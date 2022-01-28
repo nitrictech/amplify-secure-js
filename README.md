@@ -10,6 +10,49 @@ This library is open for contributors. 🚀
 
 Coming soon.
 
+## Protected Page SSR (NextJS)
+
+```tsx
+import * as React from "react";
+import type { GetServerSidePropsContext, NextPage } from "next";
+import { AmplifyStorage } from "@nitric/amplify-secure-js";
+import { withSSRContext } from "aws-amplify";
+import config from "./amplify-config";
+
+const Profile: NextPage = () => {
+  return (
+    <main>
+      <h1>Protected profile page</h1>
+    </main>
+  );
+};
+
+export async function getServerSideProps({ req }: GetServerSidePropsContext) {
+  const { Auth } = withSSRContext({ req });
+
+  Auth.configure({
+    ...config,
+    storage: new AmplifyStorage({ req }),
+  });
+
+  try {
+    await Auth.currentAuthenticatedUser();
+
+    return { props: {} };
+  } catch (e) {
+    return {
+      props: {},
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
+}
+
+export default Profile;
+```
+
 ## API Route Example (NextJS)
 
 Place this in your `/api/auth` route. Or set the environment variable `NITRIC_AMPLIFY_AUTH_PATH` to change it.
