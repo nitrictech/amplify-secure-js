@@ -1,0 +1,28 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cache Yarn Cache
+        uses: actions/cache@v2
+        with:
+          path: "node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
+      - name: Install modules
+        run: yarn --frozen-lockfile
+      - name: License Header Check
+        run: yarn license:header:check
+      - name: OSS License Whitelist Check
+        run: yarn license:check
+      - name: Build
+        run: yarn build
