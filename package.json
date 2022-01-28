@@ -1,7 +1,6 @@
 {
   "name": "@nitric/amplify-secure-js",
   "description": "A secure http only cookie based approach to using AWS Amplify",
-  "version": "1.0.0-develop.1",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
