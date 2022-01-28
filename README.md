@@ -10,6 +10,20 @@ This library is open for contributors. 🚀
 
 ## Setup
 
+1. Install
+
+   ```bash
+   yarn install @nitric/amplify-secure-js
+   ```
+
+   OR
+
+   ```bash
+   npm install @nitric/amplify-secure-js
+   ```
+
+   
+
 1. Configure amplify with the `amplifyLocalStorage` storage class:
 
    ```ts
