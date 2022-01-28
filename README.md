@@ -1,3 +1,5 @@
+
+
 # @nitric/amplify-secure-js 🔒
 
 This library was created the address the issues found [here](https://github.com/aws-amplify/amplify-js/issues/8147).
@@ -5,6 +7,50 @@ This library was created the address the issues found [here](https://github.com/
 Basically this will avoid using client side cookies and local storage by using secure http cookies instead.
 
 This library is open for contributors. 🚀
+
+## Setup
+
+1. Configure amplify with the `amplifyLocalStorage` storage class:
+
+   ```ts
+   import { amplifyLocalStorage } from "@nitric/amplify-secure-js";
+   import config from "./aws-amplify-config";
+   
+   Amplify.configure({
+     ...config,
+     storage: amplifyLocalStorage,
+   });
+   ```
+
+2. Ensure you have your API routes setup to store the secure cookies, see the API route example below.
+
+3. Call the API from your app after you have authenticated to persist the session:
+
+   ```ts
+   import { Auth } from "aws-amplify";
+   import { sendAuthStorage } from "@nitric/amplify-secure-js";
+   
+   await Auth.signIn(username, password) // or custom flow
+   await sendAuthStorage(); // this will persist the session
+   ```
+
+4. Restore the session from secure cookies:
+
+   ```ts
+   import { restoreAuthenticatedUser } from "@nitric/amplify-secure-js";
+   
+   const user = await restoreAuthenticatedUser(); // this restore the storage
+   ```
+
+5. Sign out to clear the storage:
+
+   ```ts
+   import { amplifySignOut } from "@nitric/amplify-secure-js";
+   
+   await amplifySignOut(); // clears the storage and signs out the user
+   ```
+
+   
 
 ## React Context Example (NextJS)
 
