@@ -1,0 +1,69 @@
+{
+  "name": "@nitric/amplify-secure-js",
+  "description": "A secure http only cookie based approach to using AWS Amplify",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/nitrictech/amplify-secure-js",
+  "author": "Nitric <https://github.com/nitrictech>",
+  "license": "Apache-2.0",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup ./src/index.ts  --clean --format cjs,esm --dts",
+    "dev": "tsup ./src/index.ts --clean --format cjs,esm --dts --watch",
+    "license:header:remove": "license-check-and-add remove -f ./licenseconfig.json",
+    "license:header:add": "license-check-and-add add -f ./licenseconfig.json",
+    "license:header:check": "license-check-and-add check -f ./licenseconfig.json",
+    "license:check": "licensee --production"
+  },
+  "contributors": [
+    "David Moore <davemooreuws@gmail.com>"
+  ],
+  "lint-staged": {
+    "src/**/*.{ts}": "yarn lint:fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "peerDependencies": {
+    "aws-amplify": "4.x"
+  },
+  "dependencies": {
+    "cookies": "^0.8.0",
+    "tslib": "^2.3.1",
+    "universal-cookie": "^4.0.4"
+  },
+  "devDependencies": {
+    "@types/cookies": "^0.7.7",
+    "@types/jest": "^27.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
+    "aws-amplify": "^4.3.13",
+    "codecov": "^3.8.3",
+    "eslint": "^7.24.0",
+    "husky": "^6.0.0",
+    "jest": "^27.4.7",
+    "license-check-and-add": "^4.0.2",
+    "licensee": "^8.2.0",
+    "lint-staged": "^12.3.2",
+    "prettier": "^2.5.1",
+    "ts-jest": "^27.1.3",
+    "tsup": "^5.11.11",
+    "typescript": "^4.5.5"
+  },
+  "license-check-config": {
+    "src": [
+      "src/**/*.ts",
+      "!./node_modules/**/*"
+    ],
+    "path": "assets/license_header.txt",
+    "blocking": true,
+    "logInfo": false,
+    "logError": true
+  }
+}
