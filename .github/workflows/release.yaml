@@ -20,6 +20,8 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+      - name: Build
+        run: yarn build  
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.NITRIC_BOT_TOKEN }}
