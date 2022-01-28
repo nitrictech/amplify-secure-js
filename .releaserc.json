@@ -9,7 +9,6 @@
       {
         "assets": ["dist/**"]
       }
-    ],
-    "@semantic-release/git"
+    ]
   ]
 }
