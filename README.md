@@ -13,7 +13,7 @@ This library is open for contributors. 🚀
 1. Install
 
    ```bash
-   yarn install @nitric/amplify-secure-js
+   yarn add @nitric/amplify-secure-js
    ```
 
    OR
