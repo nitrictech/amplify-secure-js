@@ -1,0 +1,12 @@
+src/
+.git/
+.github/
+.gitmodules
+tests/
+coverage/
+node_modules/
+docs/
+jest.config.js
+tsconfig.json
+yarn.lock
+README.md

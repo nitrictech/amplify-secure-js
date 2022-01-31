@@ -11,10 +11,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import Cookies from "cookies";
-import UniversalCookie from "universal-cookie";
-import { PREFIX } from "./constants";
-import { Store } from "./storage";
+import Cookies from 'cookies';
+import UniversalCookie from 'universal-cookie';
+import { PREFIX } from './constants';
+import { Store } from './storage';
 
 export const setAuthStorageServer = (req: any, res: any, data: any) => {
   // Create a cookies instance
@@ -32,7 +32,7 @@ export const setAuthStorageServer = (req: any, res: any, data: any) => {
 export const removeAuthStorageServer = (req: any, res: any) => {
   // Create a cookies instance
   const cookies = new Cookies(req, res);
-  const all = new UniversalCookie(req.headers.cookie || "").getAll();
+  const all = new UniversalCookie(req.headers.cookie || '').getAll();
 
   for (const key of Object.keys(all)) {
     if (key.startsWith(PREFIX)) {
@@ -42,7 +42,7 @@ export const removeAuthStorageServer = (req: any, res: any) => {
 };
 
 export const getAuthStorageServer = (req: any) => {
-  const all = new UniversalCookie(req.headers.cookie || "").getAll();
+  const all = new UniversalCookie(req.headers.cookie || '').getAll();
   const storageData: Store = {};
 
   for (const key of Object.keys(all)) {
