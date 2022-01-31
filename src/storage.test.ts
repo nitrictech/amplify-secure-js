@@ -57,9 +57,8 @@ describe('Storage Tests', () => {
     });
     test('Should not use cookies for setting when in browser', () => {
       global.window = {
-        //@ts-ignore
         document: {},
-      };
+      } as any;
 
       const storage = new AmplifyStorage();
       storage.setItem('test', 'value');
@@ -68,8 +67,6 @@ describe('Storage Tests', () => {
         [PREFIX + 'test']: 'value',
       });
       expect(Object.keys(storage.cookies.getAll()).length).toEqual(0);
-      //@ts-ignore
-      delete global.window.location;
     });
   });
 });
