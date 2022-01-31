@@ -11,8 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import Cookies from "universal-cookie";
-import { isBrowser, PREFIX } from "./constants";
+import Cookies from 'universal-cookie';
+import { isBrowser, PREFIX } from './constants';
 
 export type Store = Record<string, string>;
 
@@ -50,6 +50,10 @@ export class AmplifyStorage implements Storage {
   }
 
   protected getKey(key: string) {
+    if (key.startsWith(PREFIX)) {
+      return key;
+    }
+
     return PREFIX + key;
   }
 
@@ -79,21 +83,21 @@ export class AmplifyStorage implements Storage {
     // keys take the shape:
     //  1. `${ProviderPrefix}.${userPoolClientId}.${username}.${tokenType}
     //  2. `${ProviderPrefix}.${userPoolClientId}.LastAuthUser
-    const tokenType = key.split(".").pop();
+    const tokenType = key.split('.').pop();
 
     switch (tokenType) {
       // LastAuthUser is needed for computing other key names
-      case "LastAuthUser":
+      case 'LastAuthUser':
 
       // accessToken is required for CognitoUserSession
-      case "accessToken":
+      case 'accessToken':
 
       // refreshToken originates on the client, but SSR pages won't fail when this expires
       // Note: the new `accessToken` will also be refreshed on the client (since Amplify doesn't set server-side cookies)
-      case "refreshToken":
+      case 'refreshToken':
 
       // Required for CognitoUserSession
-      case "idToken":
+      case 'idToken':
         isBrowser
           ? this.setLocalItem(key, value)
           : this.setServerItem(key, value);
