@@ -16,13 +16,20 @@
     "license:header:remove": "license-check-and-add remove -f ./licenseconfig.json",
     "license:header:add": "license-check-and-add add -f ./licenseconfig.json",
     "license:header:check": "license-check-and-add check -f ./licenseconfig.json",
-    "license:check": "licensee --production"
+    "license:check": "licensee --production",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "coverage:upload": "yarn run test:coverage && codecov",
+    "prettier:check": "prettier --check src",
+    "prettier:fix": "prettier --write src",
+    "lint": "eslint \"src/**/*.ts\"",
+    "lint:fix": "yarn lint --fix"
   },
   "contributors": [
     "David Moore <davemooreuws@gmail.com>"
   ],
   "lint-staged": {
-    "src/**/*.{ts}": "yarn lint:fix"
+    "src/**/*.{ts}": "yarn prettier:fix && lint:fix"
   },
   "husky": {
     "hooks": {
@@ -45,7 +52,7 @@
     "@typescript-eslint/parser": "^5.10.1",
     "aws-amplify": "^4.3.13",
     "codecov": "^3.8.3",
-    "eslint": "^7.24.0",
+    "eslint": "^8.8.0",
     "husky": "^6.0.0",
     "jest": "^27.4.7",
     "license-check-and-add": "^4.0.2",

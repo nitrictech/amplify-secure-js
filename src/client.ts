@@ -11,11 +11,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import { Auth } from "aws-amplify";
-import { isBrowser } from "./constants";
-import { AmplifyStorage } from "./storage";
+import { Auth } from 'aws-amplify';
+import { AmplifyStorage } from './storage';
 
-const AUTH_PATH = process.env.NITRIC_AMPLIFY_AUTH_PATH || "/api/auth";
+const AUTH_PATH = process.env.NITRIC_AMPLIFY_AUTH_PATH || '/api/auth';
 
 export const amplifyLocalStorage = new AmplifyStorage();
 
@@ -29,9 +28,9 @@ export interface StorageReturn {
  */
 export const sendAuthStorage = async (): Promise<StorageReturn> => {
   const res = await fetch(AUTH_PATH, {
-    method: "POST",
-    headers: new Headers({ "Content-Type": "application/json" }),
-    credentials: "same-origin",
+    method: 'POST',
+    headers: new Headers({ 'Content-Type': 'application/json' }),
+    credentials: 'same-origin',
     body: JSON.stringify({
       data: amplifyLocalStorage.store,
     }),
@@ -46,9 +45,9 @@ export const sendAuthStorage = async (): Promise<StorageReturn> => {
 
 const removeAuthStorage = async (): Promise<StorageReturn> => {
   const res = await fetch(AUTH_PATH, {
-    method: "DELETE",
-    headers: new Headers({ "Content-Type": "application/json" }),
-    credentials: "same-origin",
+    method: 'DELETE',
+    headers: new Headers({ 'Content-Type': 'application/json' }),
+    credentials: 'same-origin',
   });
 
   if (res.status !== 200) {
@@ -66,8 +65,8 @@ export const restoreAuthenticatedUser: typeof Auth.currentAuthenticatedUser =
       return user;
     } catch (e) {
       const res = await fetch(AUTH_PATH, {
-        headers: new Headers({ "Content-Type": "application/json" }),
-        credentials: "same-origin",
+        headers: new Headers({ 'Content-Type': 'application/json' }),
+        credentials: 'same-origin',
       });
 
       if (res.status !== 200) {
