@@ -2,6 +2,11 @@
 
 # @nitric/amplify-secure-js 🔒
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/nitrictech/amplify-secure-js/Tests?label=tests)
+![Codecov](https://img.shields.io/codecov/c/github/nitrictech/amplify-secure-js)
+![npm (scoped)](https://img.shields.io/npm/v/@nitric/amplify-secure-js)
+![npm](https://img.shields.io/npm/dw/@nitric/amplify-secure-js)
+
 This library was created the address the issues found [here](https://github.com/aws-amplify/amplify-js/issues/8147).
 
 Basically this will avoid using client side cookies and local storage by using secure http cookies instead.
