@@ -15,8 +15,9 @@ import Cookies from 'cookies';
 import UniversalCookie from 'universal-cookie';
 import { PREFIX } from './constants';
 import { Store } from './storage';
+import type { IncomingMessage, ServerResponse } from 'http';
 
-export const setAuthStorageServer = (req: any, res: any, data: any) => {
+export const setAuthStorageServer = (req: IncomingMessage, res: ServerResponse, data: any) => {
   // Create a cookies instance
   const cookies = new Cookies(req, res);
 
@@ -29,7 +30,7 @@ export const setAuthStorageServer = (req: any, res: any, data: any) => {
   }
 };
 
-export const removeAuthStorageServer = (req: any, res: any) => {
+export const removeAuthStorageServer = (req: IncomingMessage, res: ServerResponse) => {
   // Create a cookies instance
   const cookies = new Cookies(req, res);
   const all = new UniversalCookie(req.headers.cookie || '').getAll();
@@ -41,7 +42,7 @@ export const removeAuthStorageServer = (req: any, res: any) => {
   }
 };
 
-export const getAuthStorageServer = (req: any) => {
+export const getAuthStorageServer = (req: IncomingMessage) => {
   const all = new UniversalCookie(req.headers.cookie || '').getAll();
   const storageData: Store = {};
 
