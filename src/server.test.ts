@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 import { PREFIX } from './constants';
-import { AmplifyStorage } from './storage';
 import Cookies from 'cookies';
 import UniversalCookie from 'universal-cookie';
 import { IncomingMessage, ServerResponse } from 'http';

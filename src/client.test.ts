@@ -19,9 +19,9 @@ jest.mock('aws-amplify');
 jest.mock('./storage');
 
 const mockFetch = jest.fn();
-let mockHeaders = jest.fn();
+const mockHeaders = jest.fn();
 
-let origFetch = global.fetch;
+const origFetch = global.fetch;
 
 beforeAll(() => {
     global.fetch = mockFetch;
@@ -129,7 +129,7 @@ describe("amplifySignOut", () => {
         });
 
         test("it should return the response", () => {
-            expect(mockSignoutResponse).toBe(mockSignoutResponse)
+            expect(response).toBe(mockSignoutResponse)
         });
     });
 
@@ -180,18 +180,21 @@ describe("restoreAuthenticatedUser", () => {
         const mockParams: any = { mock: "test" };
         const mockUser = { mock: "user" };
         let mockAuth: jest.SpyInstance;
-        let response: any;
 
         describe("when auth fetch fails", () => {
             const mockResponse = {
                 status: 400,
             };
-            let response: any;
             beforeAll(async () => {
                 mockAuth = jest.spyOn(Auth, 'currentAuthenticatedUser')
                 .mockResolvedValueOnce(Promise.reject("mock-error"));
                 mockFetch.mockResolvedValueOnce(Promise.resolve(mockResponse));
             });
+
+            test("should call Auth.currentAuthenticatedUser", () => {
+                expect(mockAuth).toBeCalledTimes(1);
+                expect(mockAuth).toBeCalledWith(mockParams);
+            })
 
             test("should throw the bad response", async () => {
                 await expect(async () => restoreAuthenticatedUser(mockParams)).rejects.toBe(mockResponse);
