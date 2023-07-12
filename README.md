@@ -16,11 +16,10 @@ Please be aware of the following:
 - We recommend exploring alternative solutions or forks of this repository if you require continued support or updates.
 
 Thank you for your interest in this project!
+
 This library was created the address the issues found [here](https://github.com/aws-amplify/amplify-js/issues/8147).
 
 Basically this will avoid using client side cookies and local storage by using secure http cookies instead.
-
-This library is open for contributors. 🚀
 
 ## Setup
 
