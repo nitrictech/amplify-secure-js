@@ -7,11 +7,19 @@
 ![npm (scoped)](https://img.shields.io/npm/v/@nitric/amplify-secure-js)
 ![npm](https://img.shields.io/npm/dw/@nitric/amplify-secure-js)
 
+> **This repository is no longer maintained.**
+
+Please be aware of the following:
+
+- This repository may contain known issues or security vulnerabilities that will not be addressed.
+- Pull requests or issues opened in this repository are unlikely to receive responses or updates.
+- We recommend exploring alternative solutions or forks of this repository if you require continued support or updates.
+
+Thank you for your interest in this project!
+
 This library was created the address the issues found [here](https://github.com/aws-amplify/amplify-js/issues/8147).
 
 Basically this will avoid using client side cookies and local storage by using secure http cookies instead.
-
-This library is open for contributors. 🚀
 
 ## Setup
 
